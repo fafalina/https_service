@@ -1,11 +1,16 @@
 package main
 
 import (
+	"encoding/json"
 	"crypto/tls"
 	"fmt"
 	"net/http"
 	"utils/utils"
 )
+
+type Response struct {
+	Message string `json:"message"`
+}
 
 func main() {
 	http.HandleFunc("/", handler)
@@ -29,5 +34,17 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, HTTPS service!")
+	response := Response{
+		Message: "Hello, HTTPS service!",
+	}
+
+	jsonBytes, err := json.Marshal(response)
+	if err != nil {
+		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+		return
+	}
+	
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonBytes)
 }
