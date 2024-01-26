@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.dataService.getData().subscribe(
       (response) => {
-        this.data = response;
-        console.log('Data from server:', this.data);
+        this.data = response.data;
+        console.log(this.data);
       },
       (error) => {
         console.error('Error fetching data:', error);
