@@ -10,12 +10,7 @@ import (
 )
 
 type Response struct {
-	Data	db.Data `json:"data"`
-}
-
-type Data struct {
-	Message string `json:"message"`
-	Value   int    `json:"value"`
+	Time	db.TimestampData `json:"timestamp"`
 }
 
 func main() {
@@ -23,8 +18,7 @@ func main() {
 
 	tlsConfig := &tls.Config{
 		ClientCAs:  utils.LoadCA("./cert/ca.crt"),
-		ClientAuth: tls.RequestClientCert, // for Chrome
-		// ClientAuth: tls.RequestClientCert, // for client go
+		ClientAuth: tls.RequestClientCert,
 	}
 
 	// Enable https server
@@ -40,10 +34,12 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    data := db.ReadData()
+	db.Init()
+	db.WriteCurrentTime()
+    time := db.ReadTime()
 
     response := Response{
-        Data:    data,
+        Time:    time,
     }
 
     jsonBytes, err := json.Marshal(response)

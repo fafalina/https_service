@@ -6,6 +6,9 @@ import (
     "log"
 )
 
+/*
+ * @brief Load CA certificate and put it into new pool
+ */
 func LoadCA(caFile string) *x509.CertPool {
     pool := x509.NewCertPool()
 
