@@ -3,6 +3,7 @@ package utils
 import (
 	"context"
 	"fmt"
+	"log"
 	"firebase.google.com/go/v4"
 	"google.golang.org/api/option"
 )

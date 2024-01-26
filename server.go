@@ -5,12 +5,17 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
-	"github.com/fafalina/https_service/utils/db"
 	"github.com/fafalina/https_service/utils/utils"
+	"github.com/fafalina/https_service/utils/db"
 )
 
 type Response struct {
-	Data	utils.Data `json:"data"`
+	Data	db.Data `json:"data"`
+}
+
+type Data struct {
+	Message string `json:"message"`
+	Value   int    `json:"value"`
 }
 
 func main() {
