@@ -5,11 +5,12 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
-	"utils/utils"
+	"github.com/fafalina/https_service/utils/db"
+	"github.com/fafalina/https_service/utils/utils"
 )
 
 type Response struct {
-	Message string `json:"message"`
+	Data	utils.Data `json:"data"`
 }
 
 func main() {
@@ -34,17 +35,19 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	response := Response{
-		Message: "Hello, HTTPS service!",
-	}
+    data := db.ReadData()
 
-	jsonBytes, err := json.Marshal(response)
-	if err != nil {
-		http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
-		return
-	}
-	
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(jsonBytes)
+    response := Response{
+        Data:    data,
+    }
+
+    jsonBytes, err := json.Marshal(response)
+    if err != nil {
+        http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+    w.Header().Set("Content-Type", "application/json")
+    w.Write(jsonBytes)
 }

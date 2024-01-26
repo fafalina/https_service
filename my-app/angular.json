@@ -73,6 +73,10 @@
               "buildTarget": "my-app:build:development"
             }
           },
+          "options": {
+            "sslKey": "../cert/server.key",
+            "sslCert": "../cert/server.crt"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

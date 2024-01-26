@@ -12,7 +12,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<DataModel> {
-    return this.http.get<DataModel>(this.apiUrl);
+  getData(): Observable<{ data: DataModel }> {
+    return this.http.get<{ data: DataModel }>(this.apiUrl);
   }
 }
