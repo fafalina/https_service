@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
-import { DataModel } from './data.model';
+import { TimestampData } from './data.model';
 
 @Component({
   selector: "app-root",
@@ -9,15 +9,15 @@ import { DataModel } from './data.model';
 })
 
 export class AppComponent implements OnInit {
-  data?: DataModel;
+  timestampData?: TimestampData;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getData().subscribe(
+    this.dataService.getUpdatedTimestampData().subscribe(
       (response) => {
-        this.data = response.data;
-        console.log(this.data);
+        this.timestampData = response;
+        console.log(this.timestampData);
       },
       (error) => {
         console.error('Error fetching data:', error);
