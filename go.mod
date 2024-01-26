@@ -1,4 +1,4 @@
-module github.com/fafalina/https_service/utils
+module https_service
 
 go 1.21.6
 
