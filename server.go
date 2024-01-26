@@ -5,8 +5,8 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
-	"github.com/fafalina/https_service/utils/utils"
-	"github.com/fafalina/https_service/utils/db"
+	"https_service/utils"
+	"https_service/db"
 )
 
 type Response struct {
