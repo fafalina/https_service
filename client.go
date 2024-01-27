@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 	"net/http"
-	"utils/utils"
+	"https_service/utils"
 )
 
 func main() {
