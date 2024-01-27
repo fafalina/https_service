@@ -1,0 +1,17 @@
+FROM golang:latest
+
+WORKDIR /https_service
+
+COPY server.go .
+COPY go.* .
+
+COPY utils/ utils
+COPY db/ db
+COPY cert/ cert
+
+RUN go mod download
+RUN go build -o server
+
+EXPOSE 8080
+
+CMD ["./server"]
