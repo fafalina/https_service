@@ -5,8 +5,8 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
-	"https_service/utils"
-	"https_service/db"
+	"server/utils"
+	"server/db"
 )
 
 type Response struct {
@@ -17,7 +17,7 @@ func main() {
 	http.HandleFunc("/", handler)
 
 	tlsConfig := &tls.Config{
-		ClientCAs:  utils.LoadCA("./cert/ca.crt"),
+		ClientCAs:  utils.LoadCA("../cert/ca.crt"),
 		ClientAuth: tls.RequestClientCert,
 	}
 
@@ -27,7 +27,7 @@ func main() {
 		TLSConfig: tlsConfig,
 	}
 	fmt.Println("HTTPS server listening on :8080")
-	err := server.ListenAndServeTLS("./cert/server.crt", "./cert/server.key")
+	err := server.ListenAndServeTLS("../cert/server.crt", "../cert/server.key")
 	if err != nil {
 		fmt.Println("Error starting HTTPS server:", err)
 	}

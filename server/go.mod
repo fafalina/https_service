@@ -1,4 +1,4 @@
-module https_service
+module server
 
 go 1.21.6
 
