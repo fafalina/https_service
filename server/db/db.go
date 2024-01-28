@@ -20,7 +20,7 @@ var client *db.Client
  * @brief Create a connection with database
  */
 func Init() {
-	opt := option.WithCredentialsFile("./cert/test-f0fe8-firebase-adminsdk-b1yqd-52792a7480.json")
+	opt := option.WithCredentialsFile("../cert/test-f0fe8-firebase-adminsdk-b1yqd-52792a7480.json")
     config := &firebase.Config{
         DatabaseURL: "https://test-f0fe8-default-rtdb.asia-southeast1.firebasedatabase.app/",
     }
