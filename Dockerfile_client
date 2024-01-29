@@ -1,15 +1,16 @@
-FROM node:lts AS build
+FROM node:lts-alpine AS build
 
 COPY my-app/ /my-app
 COPY cert/ /cert
 
 WORKDIR /my-app
 
-RUN npm install -g @angular/cli
-RUN npm install
+RUN npm install -g @angular/cli && \
+    npm install && \
+    ng build && \
+    npm cache clean --force && \
+    rm -rf /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg /usr/share/man /tmp/*
 
 EXPOSE 4200
-
-RUN ng build
 
 CMD ["ng", "serve", "--host", "0.0.0.0", "--ssl", "true", "--ssl-key", "../cert/server.key", "--ssl-cert", "../cert/server.crt"]

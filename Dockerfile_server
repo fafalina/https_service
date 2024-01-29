@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:alpine AS builder
 
 COPY server/ /server
 COPY cert/ /cert
@@ -6,8 +6,13 @@ COPY cert/ /cert
 WORKDIR /server
 
 RUN go mod download
-RUN go build -o server
+RUN go build -o app
+
+FROM alpine:latest
+
+COPY --from=builder /server/app /server/
+COPY --from=builder /cert /cert
 
 EXPOSE 8080
 
-CMD ["./server"]
+CMD ["/server/app"]
