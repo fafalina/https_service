@@ -15,13 +15,17 @@ git lfs clone https://github.com/fafalina/https_service.git
 ```
 
 # Docker Images
-Please unzip golang-https-service.zip and voy_angular_timeis_image_latest.zip in /dockerImages and run the following commands.
+Please load docker images or use 'docker compose up'.
 ```bash
-docker load -i golang-https-service.tar
-docker load -i voy_angular_timeis_image_latest.tar
+docker load -i https_service-golang-service.tar
+docker load -i https_service-angular-service.tar
 
-docker run -p 8080:8080 voy/golang-https-service
-docker run -p 4200:4200 voy/angular-timeis-image
+docker run -p 8080:8080 https_service-golang-service.tar
+docker run -p 4200:4200 https_service-angular-service.tar
+```
+
+```bash
+docker compose up
 ```
 
 # Record Some Methods Here
