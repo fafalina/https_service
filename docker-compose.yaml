@@ -13,4 +13,4 @@ services:
       context: .
       dockerfile: Dockerfile_client
     ports:
-      - "4200:4200"
+      - "4200:443"

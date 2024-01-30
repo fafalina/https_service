@@ -4,16 +4,6 @@ This is a simple example of Time.is. These project consists of three parts.
 2. The https service obtains data from the firebase real-time database. (SQL)
 3. Build an Angular webui to get data from golang https service. (client)
 
-# Github LFS Rule
-Since the docker image is too large to be pushed to github, I need to use git lfs.
-If you are unable to use "git clone" successfully, install git lfs and use "git lfs clone".
-```bash
-git lfs install
-```
-```bash
-git lfs clone https://github.com/fafalina/https_service.git
-```
-
 # Docker Images
 Please load docker images or use 'docker compose up'.
 ```bash
@@ -21,12 +11,15 @@ docker load -i https_service-golang-service.tar
 docker load -i https_service-angular-service.tar
 
 docker run -p 8080:8080 https_service-golang-service.tar
-docker run -p 4200:4200 https_service-angular-service.tar
+docker run -p 4200:443 https_service-angular-service.tar
 ```
 
 ```bash
 docker compose up
 ```
+
+# Broswer
+Please go to `https://localhost:8080` and `https://localhost:4200`
 
 # Record Some Methods Here
 ## Generate root certificate and private key (windows power shell)
